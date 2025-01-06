@@ -13,13 +13,17 @@ Este projeto foi desenvolvido com as seguintes tecnologias e bibliotecas:
 - **[Node.js](https://nodejs.org/)**
 - **[TypeScript](https://www.typescriptlang.org/)**
 - **[TypeORM](https://typeorm.io/)**
-- **[Redis](https://redis.io/)**
+- **[Redis](https://redis.io/)** e **[ioredis](https://github.com/luin/ioredis)**
 - **[MongoDB](https://www.mongodb.com/)**
 - **[Socket.io](https://socket.io/)**
 - **[Amazon SES](https://aws.amazon.com/ses/)** e **[Mailtrap](https://mailtrap.io/)**
-- **[Nodemailer](https://nodemailer.com/)**
-- **[Celebrate](https://github.com/arb/celebrate)**
-- **[JWT](https://jwt.io/)**
+- **[Nodemailer](https://nodemailer.com/)** para envio de e-mails
+- **[BCrypt](https://github.com/kelektiv/node.bcrypt.js)** para hashing de senhas
+- **[Celebrate](https://github.com/arb/celebrate)** para validação de rotas
+- **[JWT](https://jwt.io/)** para autenticação
+- **[Docker](https://www.docker.com/)** para containerização do ambiente de desenvolvimento
+- **[Insomnia](https://insomnia.rest/)** para testes de APIs
+- **[DBeaver](https://dbeaver.io/)** para gerenciar e visualizar o banco de dados
 
 ---
 
