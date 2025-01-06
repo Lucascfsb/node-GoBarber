@@ -1,70 +1,110 @@
-# Recuperação de Senha
+# GoBarber API
 
-  **RF** - Requisitos funcionais
+## Sobre o Projeto
 
-  - O usuário deve poder recuperar sua senha informando o seu e-mail;
-  - O usuário deve receber um e-mail com instruções de recuperação de senha;
-  - O usuário deve poder resetar sua senha;
+A **GoBarber API** é um back-end desenvolvido em TypeScript para gerenciar um sistema de agendamentos de serviços de barbearia. Ele oferece funcionalidades para clientes e prestadores de serviços, como agendamento de horários, notificações em tempo real, recuperação de senha, entre outros.
 
-  **RNF** - Requisitos não funcionias
+---
 
-  - Utilizar Mailtrap para testar envios em ambiente de dev;
-  - Utilizar o Amazon SES para envios em produção;
-  - O envio de e-mails deve acontecer em segundo plano (background job);
+## 🚀 Tecnologias
 
-  **RN** - Regras de Negócios
+Este projeto foi desenvolvido com as seguintes tecnologias e bibliotecas:
 
-  - O link enviado por email para resetar senha, deve expirar em 2h;
-  - O usuário precisa confirmar a nova senha ao resetar sua senha;
+- **[Node.js](https://nodejs.org/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[TypeORM](https://typeorm.io/)**
+- **[Redis](https://redis.io/)**
+- **[MongoDB](https://www.mongodb.com/)**
+- **[Socket.io](https://socket.io/)**
+- **[Amazon SES](https://aws.amazon.com/ses/)** e **[Mailtrap](https://mailtrap.io/)**
+- **[Nodemailer](https://nodemailer.com/)**
+- **[Celebrate](https://github.com/arb/celebrate)**
+- **[JWT](https://jwt.io/)**
 
+---
 
-# Atualização do Perfil
+## 🎯 Funcionalidades
 
-**RF**
+### **Recuperação de Senha**
+- Recuperação de senha por e-mail.
+- Envio de e-mails com instruções de recuperação usando Mailtrap (dev) ou Amazon SES (produção).
+- Link de reset de senha com validade de 2 horas.
 
-- O usuário deve poder atualizar seu nome, e-mail e senha;
+### **Atualização de Perfil**
+- Atualização de nome, e-mail e senha.
+- Validação da senha antiga ao atualizar a senha.
+- Confirmação da nova senha.
 
-**RN**
+### **Painel do Prestador**
+- Listagem de agendamentos de um dia específico.
+- Notificações em tempo real para novos agendamentos.
+- Controle de notificações lidas e não lidas.
 
-- O usuário não pode alterar seu email para um email já utilizado;
-- Para atualizar sua senha, o usuário deve informar a senha antiga;
-- Para atualizar sua senha, o usuário precisa confirmar a nova senha;
+### **Agendamento de Serviços**
+- Listagem de prestadores de serviço disponíveis.
+- Visualização de horários disponíveis por dia/mês.
+- Criação de novos agendamentos.
+- Restrições:
+  - Agendamentos disponíveis apenas entre 8h e 18h.
+  - Um agendamento dura 1 hora.
+  - Não é possível agendar em horários passados ou já ocupados.
+  - Não é possível agendar consigo mesmo.
 
-# Painel do Prestador
+---
 
-**RF**
+## 📂 Estrutura do Projeto
 
-- O usuário deve poder listar seus agentamentos de um dia especifico;
-- O prestador deve receber uma notificação sempre que houver um novo agendamento;
-- O prestador deve poder vizualizar as notificações não lidas;
+O projeto segue uma arquitetura modular organizada em diretórios como:
 
-**RNF**
+```
+src/
+├── modules/
+├── config/
+├── shared/
+├── infra/
+│   ├── http/
+│   ├── typeorm/
+│   ├── redis/
+│   └── mongodb/
+```
 
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no MongoDB;
-- As notificações do prestador devem ser enviadas em tempo-real utilizando Socket.io;
+---
 
-**RN**
+## 🛠 Instalação e Execução
 
-- A notificação deve ter um status de lida ou não-lida para que o prestador possa controlar;
+### Pré-requisitos
+- **Node.js** (v16 ou superior)
+- **Yarn**
+- **PostgreSQL**
+- **Redis**
+- **MongoDB**
 
-# Agendamento de Serviços
+### Passo a passo
 
-**RF**
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Lucascfsb/node-GoBarber.git
+   cd node-GoBarber
+Instale as dependências:
 
-- O usuário deve poder listar todos prestadores de serviço cadastrado;
-- O usuário deve poder listar os dias de um mês com pelo menos um horário disponível de um prestador;
-- O usuário deve poder listar horários disponíveis em um dia específico de um prestador;
-- O usuário deve poder realizar um novo agendamento com um prestador;
+```bash
+yarn install
+````
+Configure as variáveis de ambiente: Crie um arquivo .env baseado no .env.example e configure as credenciais do banco de dados e serviços externos.
 
-**RNF**
+Execute as migrações do banco de dados:
 
-- A listagem de prestadores deve ser armazenadas em cache;
+```bash
+yarn typeorm migration:run
+```
+Inicie o servidor:
 
-**RN**
+```bash
+yarn dev
+```
+🧪 Testes
+O projeto utiliza o Jest para os testes. Para executar os testes, use:
 
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponiveis entre 8h às 18h (Primeiro às 8h, último às 17h);
-- O usuário não pode agendar em um horário que já ocupado;
-- O usuário não pode agendar em um horário que já passou;
-- O usuário não pode agendar serviço consigo mesmo;
+```bash
+yarn test
+```
