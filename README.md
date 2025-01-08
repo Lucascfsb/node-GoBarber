@@ -86,9 +86,11 @@ src/
 ### Passo a passo
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Lucascfsb/node-GoBarber.git
-   cd node-GoBarber
+```bash
+git clone https://github.com/Lucascfsb/node-GoBarber.git
+cd node-GoBarber
+```
+
 Instale as dependências:
 
 ```bash
